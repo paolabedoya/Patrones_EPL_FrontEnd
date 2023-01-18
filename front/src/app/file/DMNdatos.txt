@@ -1,0 +1,27 @@
+create schema datos(
+id Integer,
+null integer
+);
+
+
+@Name('datos_Rule0') 
+insert into datos_Output
+Select id,current_timestamp.format() as date_datos, 
+from datos
+Where 
+;
+
+@Name('datos_Rule1') 
+insert into datos_Output
+Select id,current_timestamp.format() as date_datos, 
+from datos
+Where 
+;
+
+@Name('datos_Rule2') 
+insert into datos_Output
+Select id,current_timestamp.format() as date_datos, 
+from datos
+Where 
+;
+

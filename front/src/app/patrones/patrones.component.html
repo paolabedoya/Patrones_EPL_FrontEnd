@@ -1,0 +1,59 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Carga de archivos fuente CSV </div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute text-center">
+      ARCHIVOS CSV
+    </div>
+
+    <div id="wrap">
+
+      <mat-card id="box1">
+        <div mode="buffer" *ngFor="let progess of progressInfo">
+          <span>{{progess.fileName}}</span>
+          <span>{{progess.value}}%</span>
+          <div id="progressbar">
+            <mat-progress-bar mode="buffer" value={{progess.value}}>
+            </mat-progress-bar>
+          </div>
+        </div>
+      </mat-card>
+
+      <div id="box2">
+        <button id="selectButton" mat-raised-button (click)="fileInput.click()">Cargar archivos</button>
+
+        <input #fileInput type="file" hidden multiple (change)="selectFiles($event)" />
+        <span *ngIf="imageName">{{imageName}}</span>
+
+        <button id="uploadButton" mat-raised-button  *ngIf="selectedFiles" [disabled]="!selectedFiles" (click)="uploadFiles()">
+          Generar respuesta
+        </button>
+      </div>
+
+      <div id="box3">
+        <span>{{message}}</span>
+      </div>
+
+
+      <div id="box4">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Lista de Archivos</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let file of fileInfos | async">
+                <a href="{{file.url}}">{{file.name}}</a>
+                <mat-icon (click)="deleteFile(file.name)">delete</mat-icon>
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
